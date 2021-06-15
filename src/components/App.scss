@@ -91,6 +91,14 @@ h3,h4,h5,h6,p{
   font-family: "MetropolisThin";
   @include fluid-type(1200px, 320px, 18px, 20px);
 }
+.btn{
+  padding: 15px 60px;
+  display: inline-block;
+  cursor: pointer;
+  &-configure{
+    border: 2px solid $primary-blue;
+  }
+}
 
 //Extra Classes
 // .btn,btn-icon{
@@ -151,4 +159,16 @@ body{
 .main__section{
   @include flex-container(row, center, center, wrap);
   padding: 20px;
+  >div{
+    @include flex-container(column, center, center, wrap);
+  }
+  &--icons{
+    @include flex-container(row, center, center, no-wrap);
+    >div{
+      cursor: pointer;
+      padding: 15px;
+      background-color: $empty-dark;
+      margin: 5px;
+    }
+  }
 }
