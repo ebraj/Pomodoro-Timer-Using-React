@@ -19,8 +19,8 @@ $empty-dark : #312E48;
   src: url(../fonts/MetropolisThin.otf);
 }
 @font-face {
-  font-family: Mohave;
-  src: url(../fonts/Mohave.otf);
+  font-family: PlatNomor;
+  src: url(../fonts/PlatNomor.otf);
 }
 
 
@@ -81,7 +81,7 @@ $empty-dark : #312E48;
   }
 
 h1{
-  font-family: "Mohave";
+  font-family: "PlatNomor";
   @include fluid-type(1200px, 320px, 40px, 75px);
 }
 h2{
@@ -89,10 +89,66 @@ h2{
 }
 h3,h4,h5,h6,p{
   font-family: "MetropolisThin";
+  @include fluid-type(1200px, 320px, 18px, 20px);
 }
+
+//Extra Classes
+// .btn,btn-icon{
+//   padding: 10px 15px;
+//   background-color: $empty-dark;
+// }
 
 //Real Styling
 body{
   background-color: $dark-blue;
   color: $primary-white;
+}
+
+
+//Styling the app section
+.app__section{
+  min-height: 100vh;
+  height: 100%;
+  @include flex-container(column, stretch, space-between, wrap);
+}
+
+//Styling the Header Section
+.header__section{
+  // background-color: pink;
+  @include flex-container(row, center, space-between, wrap);
+  padding: 20px;
+  #{&}--title{
+    text-transform: uppercase;
+  }
+  #{&}--info{
+    @include flex-container(row, center, center, wrap);
+    &-title{
+      padding: 10px 15px;
+      background-color: $empty-dark;
+      cursor: pointer;
+    }
+  }
+}
+
+
+//Styling the footer Section
+.footer__section{
+  @include flex-container(row, center, flex-end, wrap);
+  padding: 20px;
+  #{&}--circle{
+    background-color: $primary-blue;
+    height: 60px;
+    width: 60px;
+    color: $primary-dark;
+    border-radius: 50%;
+    @include flex-container(row, center, center, wrap);
+    cursor: pointer;
+    font-size: 22.5px;
+  }
+}
+
+//Styling the Main Section
+.main__section{
+  @include flex-container(row, center, center, wrap);
+  padding: 20px;
 }
