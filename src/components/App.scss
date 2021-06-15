@@ -1,3 +1,29 @@
+//All about the colors
+$dark-blue : #18152B;
+$primary-white : #eeeeff;
+$primary-dark : #111111;
+$primary-blue : #7464FB;
+$empty-dark : #312E48;
+
+//All about the fonts
+@font-face {
+  font-family: MetropolisBold;
+  src: url(../fonts/MetropolisBold.otf);
+}
+@font-face {
+  font-family: MetropolisRegular;
+  src: url(../fonts/MetropolisRegular.otf);
+}
+@font-face {
+  font-family: MetropolisThin;
+  src: url(../fonts/MetropolisThin.otf);
+}
+@font-face {
+  font-family: Mohave;
+  src: url(../fonts/Mohave.otf);
+}
+
+
 // All about the mixins
 @mixin flex-container($direction,$align,$justify,$wrap){
     display: flex;
@@ -53,3 +79,20 @@
       }
     }
   }
+
+h1{
+  font-family: "Mohave";
+  @include fluid-type(1200px, 320px, 40px, 75px);
+}
+h2{
+  font-family: "MetropolisBold";
+}
+h3,h4,h5,h6,p{
+  font-family: "MetropolisThin";
+}
+
+//Real Styling
+body{
+  background-color: $dark-blue;
+  color: $primary-white;
+}
