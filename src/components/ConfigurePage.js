@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 
-const ConfigurePage = () => {
+const ConfigurePage = (props) => {
+  // Destructuring
+  const { updateConfigure, updatePomodoro } = props;
+  console.log(updateConfigure, updatePomodoro);
+  const [pomodoro, setPomodoro] = useState("");
+  const [pomoBreak, setPomoBreak] = useState("");
+  // onSubmitFunction Function
+  const onSubmitForm = (e) => {
+    e.preventDefault();
+    console.log(pomodoro, pomoBreak);
+    updateConfigure(false);
+    updatePomodoro(pomodoro, pomoBreak);
+  };
+  const changeConfigure = () => {
+    updateConfigure(false);
+  };
   return (
     <div className="configure__section">
       <div className="configure__section--box">
         <div className="configure__section--box-upper">
           <h2>Configure 😊</h2>
-          <p>
+          <p onClick={changeConfigure}>
             <svg
               fill="#eeeeff"
               xmlns="http://www.w3.org/2000/svg"
@@ -19,14 +34,28 @@ const ConfigurePage = () => {
           </p>
         </div>
         <div className="filler-line"></div>
-        <form className="configure__section--form">
+        <form className="configure__section--form" onSubmit={onSubmitForm}>
           <div>
             <label>Focus Time</label>
-            <input type="text" placeholder="25" />
+            <input
+              type="text"
+              placeholder="25"
+              onChange={(e) => {
+                setPomodoro(e.target.value);
+              }}
+              value={pomodoro}
+            />
           </div>
           <div>
             <label>Break Time</label>
-            <input type="text" placeholder="05" />
+            <input
+              type="text"
+              placeholder="05"
+              onChange={(e) => {
+                setPomoBreak(e.target.value);
+              }}
+              value={pomoBreak}
+            />
           </div>
           <div className="configure__section--form-btn">
             <button className="submit-btn">Apply</button>

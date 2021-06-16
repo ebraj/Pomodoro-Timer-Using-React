@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Main = () => {
-  const [pomodoro, setPomodoro] = useState("25");
-  const [pomoBreak, setPomoBreak] = useState("05");
+const Main = (props) => {
+  const { updateConfigure, pomodoro, pomoBreak } = props;
+  const changeConfigure = () => {
+    updateConfigure(true);
+  };
   return (
     <div className="main__section">
       <div>
@@ -35,7 +37,7 @@ const Main = () => {
             </svg>
           </div>
         </div>
-        <div className="main__section--info">
+        <div className="main__section--info" onClick={changeConfigure}>
           <p className="btn btn-configure">Configure</p>
         </div>
       </div>
