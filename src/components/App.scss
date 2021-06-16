@@ -4,6 +4,7 @@ $primary-white : #eeeeff;
 $primary-dark : #111111;
 $primary-blue : #7464FB;
 $empty-dark : #312E48;
+$primary-gray : #ffffff38;
 
 //All about the fonts
 @font-face {
@@ -79,7 +80,17 @@ $empty-dark : #312E48;
       }
     }
   }
+// All related to svg
+svg{
+  cursor: pointer;
+}
 
+.filler-line{
+  width: 100%;
+  height: 1px;
+  background-color: $primary-gray;
+  margin: 10px 0;
+}
 h1{
   font-family: "PlatNomor";
   @include fluid-type(1200px, 320px, 40px, 75px);
@@ -87,9 +98,12 @@ h1{
 h2{
   font-family: "MetropolisBold";
 }
-h3,h4,h5,h6,p{
+h3,h4,h5,h6,p,label,input,button{
   font-family: "MetropolisThin";
   @include fluid-type(1200px, 320px, 18px, 20px);
+}
+input{
+  color: $primary-white;
 }
 .btn{
   padding: 15px 60px;
@@ -114,7 +128,7 @@ body{
 
 
 //Styling the app section
-.app__section{
+.main__page{
   min-height: 100vh;
   height: 100%;
   @include flex-container(column, stretch, space-between, wrap);
@@ -171,4 +185,48 @@ body{
       margin: 5px;
     }
   }
+}
+
+
+//All related to the configure page..
+.configure__section{
+  @include flex-container(row, center, center, wrap);
+  // background-color: pink;
+  min-height: 100vh;
+  height: 100%;
+
+  &--box{
+    padding: 45px;
+    background-color: $empty-dark;
+    width: 50vw;
+    &-upper{
+      @include flex-container(row, center, space-between, no-wrap);
+    }
+  }
+  &--form{
+    label{
+      padding:15px 0;
+    }
+    &-btn{
+      text-align: center;
+      margin-top: 40px;
+    }
+  }
+}
+
+// All related to the Input field
+label{
+  display: block;
+}
+input{
+  width: 100%;
+  background-color: transparent;
+  outline: none;
+  border: 1px solid $primary-gray;
+  padding: 10px;
+}
+.submit-btn{
+  background-color: $primary-blue;
+  color: $primary-white;
+  font-family: MetropolisBold;
 }

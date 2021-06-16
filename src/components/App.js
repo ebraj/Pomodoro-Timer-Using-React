@@ -1,15 +1,13 @@
 import React from "react";
 import "./App.scss";
-import Footer from "./Footer";
-import Header from "./Header";
-import Main from "./Main";
+import MainPage from "./MainPage";
+import ConfigurePage from "./ConfigurePage";
 
 const App = () => {
   return (
     <div className="app__section">
-      <Header />
-      <Main />
-      <Footer />
+      {/* <MainPage /> */}
+      <ConfigurePage />
     </div>
   );
 };

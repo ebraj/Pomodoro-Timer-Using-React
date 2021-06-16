@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Main = () => {
+  const [pomodoro, setPomodoro] = useState("25");
+  const [pomoBreak, setPomoBreak] = useState("05");
   return (
     <div className="main__section">
       <div>
         <div className="main__section--title">
-          <h1>25 : 00</h1>
+          <h1>
+            {pomodoro} : {pomoBreak}
+          </h1>
         </div>
         <div className="main__section--icons">
           <div className="btn-play-pause">
