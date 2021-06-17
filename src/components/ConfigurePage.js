@@ -9,6 +9,7 @@ const ConfigurePage = (props) => {
   // onSubmitFunction Function
   const onSubmitForm = (e) => {
     e.preventDefault();
+    if (pomodoro === "" || pomoBreak === "") return;
     console.log(pomodoro, pomoBreak);
     updateConfigure(false);
     updatePomodoro(pomodoro, pomoBreak);
@@ -38,23 +39,33 @@ const ConfigurePage = (props) => {
           <div>
             <label>Focus Time</label>
             <input
-              type="text"
+              type="number"
               placeholder="25"
               onChange={(e) => {
                 setPomodoro(e.target.value);
               }}
               value={pomodoro}
+              required
+              maxLength="2"
+              minLength="0"
+              max="59"
+              step="1"
             />
           </div>
           <div>
             <label>Break Time</label>
             <input
-              type="text"
+              type="number"
               placeholder="05"
               onChange={(e) => {
                 setPomoBreak(e.target.value);
               }}
               value={pomoBreak}
+              required
+              maxLength="2"
+              minLength="0"
+              max="59"
+              step="1"
             />
           </div>
           <div className="configure__section--form-btn">
