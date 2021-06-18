@@ -3,7 +3,7 @@ $dark-blue : #18152B;
 $primary-white : #eeeeff;
 $primary-dark : #111111;
 $primary-blue : #7464FB;
-$empty-dark : #312E48;
+$empty-dark : #211E37;
 $primary-gray : #ffffff38;
 
 //All about the fonts
@@ -98,7 +98,7 @@ h1{
 h2{
   font-family: "MetropolisBold";
 }
-h3,h4,h5,h6,p,label,input,button{
+h3,h4,h5,h6,p,label,input,button,select,option{
   font-family: "MetropolisThin";
   @include fluid-type(1200px, 320px, 18px, 20px);
 }
@@ -190,8 +190,13 @@ body{
 
 //All related to the configure page..
 .configure__section{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   @include flex-container(row, center, center, wrap);
-  // background-color: pink;
+  background-color: $dark-blue;
   min-height: 100vh;
   height: 100%;
 
@@ -230,12 +235,21 @@ body{
 label{
   display: block;
 }
-input{
+input,select{
   width: 100%;
   background-color: transparent;
   outline: none;
   border: 1px solid $primary-gray;
   padding: 15px;
+  color: $primary-white;
+}
+
+option{
+  color: $primary-white;
+  background-color: $dark-blue;
+  margin: 5px 0;
+  padding: 20px;
+  border: none;
 }
 .submit-btn{
   background-color: $primary-blue;

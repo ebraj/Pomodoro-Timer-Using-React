@@ -5,6 +5,7 @@ import Main from "./Main";
 
 const MainPage = (props) => {
   const { updateConfigure, pomodoro, pomoBreak } = props;
+
   return (
     <div className="main__page">
       <Header />

@@ -68,6 +68,14 @@ const ConfigurePage = (props) => {
               step="1"
             />
           </div>
+          {/* <div>
+            <label>Lofi</label>
+            <select>
+              <option value="chill-lofi">Chill Lofi</option>
+              <option value="chill-lofi">Relax Lofi</option>
+              <option value="chill-lofi">Concentrate Lofi</option>
+            </select>
+          </div> */}
           <div className="configure__section--form-btn">
             <button className="submit-btn">Apply</button>
           </div>
