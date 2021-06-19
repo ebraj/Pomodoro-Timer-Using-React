@@ -2,37 +2,77 @@ import React, { useState, useEffect } from "react";
 
 const Main = (props) => {
   const { updateConfigure, pomodoro, pomoBreak } = props;
+  console.log(pomodoro, pomoBreak);
   const [isPlay, setIsPlay] = useState(false);
-  // Changing the play btn
+  const [isSession, setIsSession] = useState(false);
+  const [minutes, setMinutes] = useState();
+  const [seconds, setSeconds] = useState();
+  const [_interval, _setInterval] = useState(0);
+  const [endTime, setEndTime] = useState(0);
+  const [_remainingTimeinMs, _setRemainingTimeinMs] = useState(0);
+  const configureTime = (_session, _break) => {
+    if (!isSession) {
+      _session < 10 ? setMinutes(`0${_session}`) : setMinutes(pomodoro);
+      setSeconds("00");
+    } else {
+      _break < 10 ? setSeconds(`0${_session}`) : setSeconds(pomodoro);
+      setSeconds("00");
+    }
+  };
+  /**
+   * Countdown function to count the time.
+   */
+  const countDownFunction = (_endTime) => {
+    let remainingTimeinMs = _endTime - Date.now();
+    console.log(remainingTimeinMs);
+    _setRemainingTimeinMs(remainingTimeinMs);
+    let remainingTimeinS = Math.round(remainingTimeinMs / 1000);
+    //Preparing for the two digits minutes & seconds
+    let _tempMinute = Math.floor(remainingTimeinS / 60);
+    let _tempSeconds = Math.floor(remainingTimeinS % 60);
+    _tempMinute < 10 ? setMinutes(`0${_tempMinute}`) : setMinutes(_tempMinute);
+    _tempSeconds < 10
+      ? setSeconds(`0${_tempSeconds}`)
+      : setSeconds(_tempSeconds);
+  };
+  // Changing the play/pause btn
   const changePlayBtn = () => {
     setIsPlay(!isPlay);
     if (!isPlay) {
-      playFunction();
+      console.log("Play");
+      let totalTimeinMs = _remainingTimeinMs;
+      let _endTime = totalTimeinMs + Date.now();
+      _setInterval(
+        setInterval(() => {
+          countDownFunction(_endTime);
+        }, 1000)
+      );
     } else {
-      pauseFunction();
+      clearInterval(_interval);
     }
   };
-
-  /**
-   * Play function
-   */
-  const playFunction = () => {
-    console.log("Play");
-  };
-  /**
-   * Plause function
-   */
-  const pauseFunction = () => {
-    console.log("Play");
+  //Timer Restart functionality
+  const restartFunction = () => {
+    clearInterval(_interval);
+    configureTime(pomodoro, pomoBreak);
+    setIsPlay(false);
+    _setRemainingTimeinMs(pomodoro * 60000);
   };
   const changeConfigure = () => {
     updateConfigure(true);
   };
+  // ChangingConfigure
+  useEffect(() => {
+    configureTime(pomodoro, pomoBreak);
+    _setRemainingTimeinMs(pomodoro * 60000);
+  }, [pomodoro, pomoBreak]);
   return (
     <div className="main__section">
       <div>
         <div className="main__section--title">
-          <h1>{/* {minutes} : {seconds} */}</h1>
+          <h1>
+            {minutes} : {seconds}
+          </h1>
         </div>
         <div className="main__section--icons">
           <div className="btn-play-pause" onClick={changePlayBtn}>
@@ -62,7 +102,7 @@ const Main = (props) => {
               </div>
             )}
           </div>
-          <div className="btn-restart">
+          <div className="btn-restart" onClick={restartFunction}>
             <svg
               fill="#eeeeff"
               xmlns="http://www.w3.org/2000/svg"

@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 
 const Main = (props) => {
   const { updateConfigure, pomodoro, pomoBreak } = props;
+  console.log(pomodoro, pomoBreak);
   const [isPlay, setIsPlay] = useState(false);
   const [isSession, setIsSession] = useState(false);
   const [minutes, setMinutes] = useState();
   const [seconds, setSeconds] = useState();
   const [_interval, _setInterval] = useState(0);
   const [endTime, setEndTime] = useState(0);
+  const [_remainingTimeinMs, _setRemainingTimeinMs] = useState(0);
   const configureTime = (_session, _break) => {
     if (!isSession) {
       _session < 10 ? setMinutes(`0${_session}`) : setMinutes(pomodoro);
@@ -22,7 +24,9 @@ const Main = (props) => {
    */
   const countDownFunction = (_endTime) => {
     let remainingTimeinMs = _endTime - Date.now();
-    let remainingTimeinS = Math.floor(remainingTimeinMs / 1000);
+    console.log(remainingTimeinMs);
+    _setRemainingTimeinMs(remainingTimeinMs);
+    let remainingTimeinS = Math.round(remainingTimeinMs / 1000);
     //Preparing for the two digits minutes & seconds
     let _tempMinute = Math.floor(remainingTimeinS / 60);
     let _tempSeconds = Math.floor(remainingTimeinS % 60);
@@ -31,30 +35,37 @@ const Main = (props) => {
       ? setSeconds(`0${_tempSeconds}`)
       : setSeconds(_tempSeconds);
   };
-  // Changing the play btn
+  // Changing the play/pause btn
   const changePlayBtn = () => {
     setIsPlay(!isPlay);
     if (!isPlay) {
       console.log("Play");
-      let totalTimeinMs = pomodoro * 60000;
+      let totalTimeinMs = _remainingTimeinMs;
       let _endTime = totalTimeinMs + Date.now();
       _setInterval(
         setInterval(() => {
           countDownFunction(_endTime);
-        }, 100)
+        }, 1000)
       );
     } else {
       clearInterval(_interval);
-      console.log("Pause");
     }
+  };
+  //Timer Restart functionality
+  const restartFunction = () => {
+    configureTime(pomodoro, pomoBreak);
+    clearInterval(_interval);
+    setIsPlay(false);
+    _setRemainingTimeinMs(pomodoro * 60000);
+  };
+  const changeConfigure = () => {
+    updateConfigure(true);
   };
   // ChangingConfigure
   useEffect(() => {
     configureTime(pomodoro, pomoBreak);
+    _setRemainingTimeinMs(pomodoro * 60000);
   }, [pomodoro, pomoBreak]);
-  const changeConfigure = () => {
-    updateConfigure(true);
-  };
   return (
     <div className="main__section">
       <div>
@@ -91,7 +102,7 @@ const Main = (props) => {
               </div>
             )}
           </div>
-          <div className="btn-restart">
+          <div className="btn-restart" onClick={restartFunction}>
             <svg
               fill="#eeeeff"
               xmlns="http://www.w3.org/2000/svg"

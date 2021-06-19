@@ -15,6 +15,9 @@ const ConfigurePage = (props) => {
   const changeConfigure = () => {
     updateConfigure(false);
   };
+  const onBtnClick = () => {
+    console.log("Clicked");
+  };
   return (
     <div className="configure__section">
       <div className="configure__section--box">
@@ -75,7 +78,9 @@ const ConfigurePage = (props) => {
             </select>
           </div> */}
           <div className="configure__section--form-btn">
-            <button className="submit-btn">Apply</button>
+            <button className="submit-btn" onBtnClick={onBtnClick}>
+              Apply
+            </button>
           </div>
         </form>
       </div>
