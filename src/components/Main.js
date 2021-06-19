@@ -6,6 +6,8 @@ const Main = (props) => {
   const [isSession, setIsSession] = useState(false);
   const [minutes, setMinutes] = useState();
   const [seconds, setSeconds] = useState();
+  const [_interval, _setInterval] = useState(0);
+  const [endTime, setEndTime] = useState(0);
   const configureTime = (_session, _break) => {
     if (!isSession) {
       _session < 10 ? setMinutes(`0${_session}`) : setMinutes(pomodoro);
@@ -15,12 +17,34 @@ const Main = (props) => {
       setSeconds("00");
     }
   };
+  /**
+   * Countdown function to count the time.
+   */
+  const countDownFunction = (_endTime) => {
+    let remainingTimeinMs = _endTime - Date.now();
+    let remainingTimeinS = Math.floor(remainingTimeinMs / 1000);
+    //Preparing for the two digits minutes & seconds
+    let _tempMinute = Math.floor(remainingTimeinS / 60);
+    let _tempSeconds = Math.floor(remainingTimeinS % 60);
+    _tempMinute < 10 ? setMinutes(`0${_tempMinute}`) : setMinutes(_tempMinute);
+    _tempSeconds < 10
+      ? setSeconds(`0${_tempSeconds}`)
+      : setSeconds(_tempSeconds);
+  };
   // Changing the play btn
   const changePlayBtn = () => {
     setIsPlay(!isPlay);
     if (!isPlay) {
       console.log("Play");
+      let totalTimeinMs = pomodoro * 60000;
+      let _endTime = totalTimeinMs + Date.now();
+      _setInterval(
+        setInterval(() => {
+          countDownFunction(_endTime);
+        }, 100)
+      );
     } else {
+      clearInterval(_interval);
       console.log("Pause");
     }
   };
