@@ -3,31 +3,28 @@ import React, { useState, useEffect } from "react";
 const Main = (props) => {
   const { updateConfigure, pomodoro, pomoBreak } = props;
   const [isPlay, setIsPlay] = useState(false);
-  const [isSession, setIsSession] = useState(false);
-  const [minutes, setMinutes] = useState();
-  const [seconds, setSeconds] = useState();
-  const configureTime = (_session, _break) => {
-    if (!isSession) {
-      _session < 10 ? setMinutes(`0${_session}`) : setMinutes(pomodoro);
-      setSeconds("00");
-    } else {
-      _break < 10 ? setSeconds(`0${_session}`) : setSeconds(pomodoro);
-      setSeconds("00");
-    }
-  };
   // Changing the play btn
   const changePlayBtn = () => {
     setIsPlay(!isPlay);
     if (!isPlay) {
-      console.log("Play");
+      playFunction();
     } else {
-      console.log("Pause");
+      pauseFunction();
     }
   };
-  // ChangingConfigure
-  useEffect(() => {
-    configureTime(pomodoro, pomoBreak);
-  }, [pomodoro, pomoBreak]);
+
+  /**
+   * Play function
+   */
+  const playFunction = () => {
+    console.log("Play");
+  };
+  /**
+   * Plause function
+   */
+  const pauseFunction = () => {
+    console.log("Play");
+  };
   const changeConfigure = () => {
     updateConfigure(true);
   };
@@ -35,9 +32,7 @@ const Main = (props) => {
     <div className="main__section">
       <div>
         <div className="main__section--title">
-          <h1>
-            {minutes} : {seconds}
-          </h1>
+          <h1>{/* {minutes} : {seconds} */}</h1>
         </div>
         <div className="main__section--icons">
           <div className="btn-play-pause" onClick={changePlayBtn}>
