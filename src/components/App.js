@@ -11,12 +11,10 @@ const App = () => {
   const [pomoBreak, setPomoBreak] = useState(0);
   const updateConfigure = (bool) => {
     setIsConfigure(bool);
-    console.log(bool);
   };
   const updatePomodoro = (_pomodoro, _pomoBreak) => {
     setPomodoro(_pomodoro);
     setPomoBreak(_pomoBreak);
-    console.log(_pomodoro);
   };
   //UseEffect to take eye on bool change
   useEffect(() => {

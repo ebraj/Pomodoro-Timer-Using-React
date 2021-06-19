@@ -3,14 +3,12 @@ import React, { useState } from "react";
 const ConfigurePage = (props) => {
   // Destructuring
   const { updateConfigure, updatePomodoro } = props;
-  console.log(updateConfigure, updatePomodoro);
   const [pomodoro, setPomodoro] = useState("");
   const [pomoBreak, setPomoBreak] = useState("");
   // onSubmitFunction Function
   const onSubmitForm = (e) => {
     e.preventDefault();
     if (pomodoro === "" || pomoBreak === "") return;
-    console.log(pomodoro, pomoBreak);
     updateConfigure(false);
     updatePomodoro(pomodoro, pomoBreak);
   };

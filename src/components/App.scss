@@ -3,7 +3,7 @@ $dark-blue : #18152B;
 $primary-white : #eeeeff;
 $primary-dark : #111111;
 $primary-blue : #7464FB;
-$empty-dark : #211E37;
+$empty-dark : #302b53;
 $primary-gray : #ffffff38;
 
 //All about the fonts
@@ -178,11 +178,18 @@ body{
   }
   &--icons{
     @include flex-container(row, center, center, no-wrap);
-    >div{
+    &>div{
       cursor: pointer;
+      margin: 10px;
+      background-color: pink;
+      >div{
+        padding: 15px;
+        background-color: $empty-dark;
+      }
+    }
+    .btn-restart{
       padding: 15px;
       background-color: $empty-dark;
-      margin: 5px;
     }
   }
 }
