@@ -65,8 +65,6 @@ const Main = (props) => {
   }, [pomodoro, pomoBreak]);
   //useEffect
   useEffect(() => {
-    console.log(minutes, seconds);
-    console.log(_remainingTimeinMs);
     if (minutes === "00" && seconds === "00" && _remainingTimeinMs < 1000) {
       clearInterval(_interval);
       setIsPlay(false);
@@ -76,9 +74,28 @@ const Main = (props) => {
     <div className="main__section">
       <div>
         <div className="main__section--title">
-          <h1>
-            {minutes} : {seconds}
-          </h1>
+          <div className="base__timer">
+            <svg
+              className="base__timer--svg"
+              viewBox="0 0 100 100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g className="base__timer--circle">
+                <circle
+                  className="base__timer--path-elapsed"
+                  cx="50"
+                  cy="50"
+                  r="45"
+                />
+              </g>
+            </svg>
+            <div className="base__timer--label">
+              <h1>
+                {minutes} : {seconds}
+              </h1>
+              <p>#SESSION</p>
+            </div>
+          </div>
         </div>
         <div className="main__section--icons">
           <div className="btn-play-pause" onClick={changePlayBtn}>
@@ -108,6 +125,9 @@ const Main = (props) => {
               </div>
             )}
           </div>
+          <div className="main__section--info" onClick={changeConfigure}>
+            <p className="btn btn-configure">Configure</p>
+          </div>
           <div className="btn-restart" onClick={restartFunction}>
             <svg
               fill="#eeeeff"
@@ -119,9 +139,6 @@ const Main = (props) => {
               <path d="M 10 0 L 0 2 L 3.03125 5.03125 C 1.273438 7.222656 0.1875 9.972656 0.1875 13 C 0.1875 20.074219 5.921875 25.8125 13 25.8125 C 20.078125 25.8125 25.8125 20.074219 25.8125 13 C 25.8125 7.695313 22.59375 3.132813 18 1.1875 L 18 4.28125 C 21.027344 6.019531 23.0625 9.261719 23.0625 13 C 23.0625 18.5625 18.5625 23.0625 13 23.0625 C 7.4375 23.0625 2.9375 18.5625 2.9375 13 C 2.9375 10.726563 3.695313 8.652344 4.96875 6.96875 L 8 10 Z" />
             </svg>
           </div>
-        </div>
-        <div className="main__section--info" onClick={changeConfigure}>
-          <p className="btn btn-configure">Configure</p>
         </div>
       </div>
     </div>

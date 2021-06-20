@@ -137,7 +137,7 @@ body{
 //Styling the Header Section
 .header__section{
   // background-color: pink;
-  border-bottom: 2px solid $empty-dark;
+  border-bottom: 1.5px solid $empty-dark;
   @include flex-container(row, center, space-between, wrap);
   padding: 20px;
   #{&}--title{
@@ -274,10 +274,13 @@ option{
   &--svg{
     fill: none;
     stroke: none;
+    /* Flips the svg and makes the animation to move left-to-right */
+    transform: scaleX(-1);
   }
   &--path-elapsed{
     stroke-width: 5px;
-    stroke: $empty-dark;
+    stroke: $primary-blue;
+    fill: none;
   }
  &--label{
   position: absolute;
@@ -290,8 +293,7 @@ option{
     margin:30px 0px 30px;
   }
   p{
-    // margin-top: 50px;
-    // color: $empty-dark;
+    color: $primary-white;
   }
  }
 }
