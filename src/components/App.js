@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import "./App.scss";
 import MainPage from "./MainPage";
 import ConfigurePage from "./ConfigurePage";
-import CountDownSvg from "./CountDownSvg";
+// import CountDownSvg from "./CountDownSvg";
 
 const App = () => {
   const [isConfigure, setIsConfigure] = useState(false);
