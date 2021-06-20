@@ -65,8 +65,6 @@ const Main = (props) => {
   }, [pomodoro, pomoBreak]);
   //useEffect
   useEffect(() => {
-    console.log(minutes, seconds);
-    console.log(_remainingTimeinMs);
     if (minutes === "00" && seconds === "00" && _remainingTimeinMs < 1000) {
       clearInterval(_interval);
       setIsPlay(false);
@@ -76,15 +74,15 @@ const Main = (props) => {
     <div className="main__section">
       <div>
         <div className="main__section--title">
-          <div class="base__timer">
+          <div className="base__timer">
             <svg
-              class="base__timer--svg"
+              className="base__timer--svg"
               viewBox="0 0 100 100"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <g class="base__timer--circle">
+              <g className="base__timer--circle">
                 <circle
-                  class="base__timer--path-elapsed"
+                  className="base__timer--path-elapsed"
                   cx="50"
                   cy="50"
                   r="45"

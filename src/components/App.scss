@@ -137,6 +137,7 @@ body{
 //Styling the Header Section
 .header__section{
   // background-color: pink;
+  border-bottom: 2px solid $empty-dark;
   @include flex-container(row, center, space-between, wrap);
   padding: 20px;
   #{&}--title{
