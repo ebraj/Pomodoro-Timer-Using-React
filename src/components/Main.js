@@ -41,7 +41,7 @@ const Main = (props) => {
       _setInterval(
         setInterval(() => {
           countDownFunction(_endTime);
-        }, 1000)
+        }, 100)
       );
     } else {
       clearInterval(_interval);
