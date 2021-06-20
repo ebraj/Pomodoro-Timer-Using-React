@@ -181,7 +181,6 @@ body{
     &>div{
       cursor: pointer;
       margin: 10px;
-      background-color: pink;
       >div{
         padding: 15px;
         background-color: $empty-dark;
@@ -262,4 +261,36 @@ option{
   background-color: $primary-blue;
   color: $primary-white;
   font-family: MetropolisBold;
+}
+
+
+// ALl about the countdownsvg
+.base__timer{
+  // background-color: pink;
+  position: relative;
+  height: 300px;
+  width: 300px;
+  &--svg{
+    fill: none;
+    stroke: none;
+  }
+  &--path-elapsed{
+    stroke-width: 5px;
+    stroke: $empty-dark;
+  }
+ &--label{
+  position: absolute;
+  // background-color: pink;
+  width: 300px;
+  height: 300px;
+  top: 0;
+  @include flex-container(column, center, center, no-wrap);
+  h1{
+    margin:30px 0px 30px;
+  }
+  p{
+    // margin-top: 50px;
+    // color: $empty-dark;
+  }
+ }
 }
