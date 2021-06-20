@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 
 const Main = (props) => {
   const { updateConfigure, pomodoro, pomoBreak } = props;
-  console.log(pomodoro, pomoBreak);
   const [isPlay, setIsPlay] = useState(false);
   const [isSession, setIsSession] = useState(false);
   const [minutes, setMinutes] = useState();
   const [seconds, setSeconds] = useState();
   const [_interval, _setInterval] = useState(0);
-  const [endTime, setEndTime] = useState(0);
   const [_remainingTimeinMs, _setRemainingTimeinMs] = useState(0);
   const configureTime = (_session, _break) => {
     if (!isSession) {
@@ -24,7 +22,6 @@ const Main = (props) => {
    */
   const countDownFunction = (_endTime) => {
     let remainingTimeinMs = _endTime - Date.now();
-    console.log(remainingTimeinMs);
     _setRemainingTimeinMs(remainingTimeinMs);
     let remainingTimeinS = Math.round(remainingTimeinMs / 1000);
     //Preparing for the two digits minutes & seconds
@@ -39,7 +36,6 @@ const Main = (props) => {
   const changePlayBtn = () => {
     setIsPlay(!isPlay);
     if (!isPlay) {
-      console.log("Play");
       let totalTimeinMs = _remainingTimeinMs;
       let _endTime = totalTimeinMs + Date.now();
       _setInterval(
@@ -53,12 +49,13 @@ const Main = (props) => {
   };
   //Timer Restart functionality
   const restartFunction = () => {
-    clearInterval(_interval);
     configureTime(pomodoro, pomoBreak);
+    clearInterval(_interval);
     setIsPlay(false);
     _setRemainingTimeinMs(pomodoro * 60000);
   };
   const changeConfigure = () => {
+    restartFunction();
     updateConfigure(true);
   };
   // ChangingConfigure
@@ -66,6 +63,15 @@ const Main = (props) => {
     configureTime(pomodoro, pomoBreak);
     _setRemainingTimeinMs(pomodoro * 60000);
   }, [pomodoro, pomoBreak]);
+  //useEffect
+  useEffect(() => {
+    console.log(minutes, seconds);
+    console.log(_remainingTimeinMs);
+    if (minutes === "00" && seconds === "00" && _remainingTimeinMs < 1000) {
+      clearInterval(_interval);
+      setIsPlay(false);
+    }
+  }, [minutes, seconds]);
   return (
     <div className="main__section">
       <div>

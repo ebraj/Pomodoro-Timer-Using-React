@@ -63,6 +63,15 @@ const Main = (props) => {
     configureTime(pomodoro, pomoBreak);
     _setRemainingTimeinMs(pomodoro * 60000);
   }, [pomodoro, pomoBreak]);
+  //useEffect
+  useEffect(() => {
+    console.log(minutes, seconds);
+    console.log(_remainingTimeinMs);
+    if (minutes === "00" && seconds === "00" && _remainingTimeinMs < 1000) {
+      clearInterval(_interval);
+      setIsPlay(false);
+    }
+  }, [minutes, seconds]);
   return (
     <div className="main__section">
       <div>
