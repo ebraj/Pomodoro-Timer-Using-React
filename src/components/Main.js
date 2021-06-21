@@ -80,7 +80,7 @@ const Main = (props) => {
     ) {
       clearInterval(_interval);
       setIsPlay(false);
-      setIsBreak(true);
+      setIsBreak(!isBreak);
     }
   }, [minutes, seconds]);
   return (

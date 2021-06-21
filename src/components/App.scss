@@ -291,9 +291,11 @@ option{
   @include flex-container(column, center, center, no-wrap);
   h1{
     margin:30px 0px 30px;
+    text-align: center;
   }
   p{
     color: $primary-white;
+    text-align: center;
   }
  }
 }
