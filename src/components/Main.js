@@ -14,13 +14,12 @@ const Main = (props) => {
   const [seconds, setSeconds] = useState();
   const [_interval, _setInterval] = useState(0);
   const [_remainingTimeinMs, _setRemainingTimeinMs] = useState(0);
-  const [_startTimer] = useSound(startTimer);
-  const [_pauseTimer] = useSound(pauseTimer);
-  const [_timesUp] = useSound(timesUp);
   /**
    * All about the sounds
    */
-
+  const [_startTimer] = useSound(startTimer);
+  const [_pauseTimer] = useSound(pauseTimer);
+  const [_timesUp] = useSound(timesUp);
   const configureTime = (_session, _break) => {
     if (!isBreak) {
       _session < 10 ? setMinutes(`0${_session}`) : setMinutes(pomodoro);

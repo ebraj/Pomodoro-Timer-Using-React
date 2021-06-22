@@ -35,10 +35,10 @@ const ConfigurePage = (props) => {
         <div className="filler-line"></div>
         <form className="configure__section--form" onSubmit={onSubmitForm}>
           <div>
-            <label>Focus Time</label>
+            <label>Focus/Session Time (In Minutes)</label>
             <input
               type="number"
-              placeholder="25"
+              placeholder="Enter the Session Time Eg.25"
               onChange={(e) => {
                 setPomodoro(e.target.value);
               }}
@@ -51,10 +51,10 @@ const ConfigurePage = (props) => {
             />
           </div>
           <div>
-            <label>Break Time</label>
+            <label>Break Time (In Minutes)</label>
             <input
               type="number"
-              placeholder="05"
+              placeholder="Enter the Session Time Eg.25"
               onChange={(e) => {
                 setPomoBreak(e.target.value);
               }}

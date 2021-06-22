@@ -93,14 +93,14 @@ svg{
 }
 h1{
   font-family: "PlatNomor";
-  @include fluid-type(1200px, 320px, 40px, 75px);
+  @include fluid-type(1200px, 320px, 35px, 70px);
 }
 h2{
   font-family: "MetropolisBold";
 }
 h3,h4,h5,h6,p,label,input,button,select,option{
   font-family: "MetropolisThin";
-  @include fluid-type(1200px, 320px, 18px, 20px);
+  @include fluid-type(1200px, 320px, 17px, 19px);
 }
 input{
   color: $primary-white;
@@ -137,11 +137,17 @@ body{
 //Styling the Header Section
 .header__section{
   // background-color: pink;
-  border-bottom: 1.5px solid $empty-dark;
+  // border-bottom: 1.5px solid $empty-dark;
   @include flex-container(row, center, space-between, wrap);
   padding: 20px;
   #{&}--title{
     text-transform: uppercase;
+    // background-color: pink;
+    @include flex-container(row, center, center, wrap);
+    svg{
+      cursor: default;
+      margin: 5px;
+    }
   }
   #{&}--info{
     @include flex-container(row, center, center, wrap);
@@ -156,18 +162,20 @@ body{
 
 //Styling the footer Section
 .footer__section{
-  @include flex-container(row, center, flex-end, wrap);
-  padding: 20px;
-  #{&}--circle{
-    background-color: $primary-blue;
-    height: 60px;
-    width: 60px;
-    color: $primary-dark;
-    border-radius: 50%;
-    @include flex-container(row, center, center, wrap);
-    cursor: pointer;
-    font-size: 22.5px;
-  }
+  // font-style: italic;
+  border-top: 1px solid $empty-dark;
+  @include flex-container(row, center, center, wrap);
+  padding: 30px;
+  // #{&}--circle{
+  //   background-color: $primary-blue;
+  //   height: 60px;
+  //   width: 60px;
+  //   color: $primary-dark;
+  //   border-radius: 50%;
+  //   @include flex-container(row, center, center, wrap);
+  //   cursor: pointer;
+  //   font-size: 22.5px;
+  // }
 }
 
 //Styling the Main Section
