@@ -119,6 +119,20 @@ input{
 //   padding: 10px 15px;
 //   background-color: $empty-dark;
 // }
+// Links Styling
+.social__links{
+  // background-color: pink;
+  @include flex-container(row, center, center, wrap);
+  li{
+    padding: 5px;
+    svg{
+      transition: all 0.5s ease;
+      &:hover{
+        fill: $primary-white;
+      }
+    }
+  }
+}
 
 //Real Styling
 body{
@@ -131,15 +145,16 @@ body{
 .main__page{
   min-height: 100vh;
   height: 100%;
-  @include flex-container(column, stretch, space-between, wrap);
+  width: 100vw;
+  @include flex-container(column, stretch, space-between, no-wrap);
 }
 
 //Styling the Header Section
 .header__section{
   // background-color: pink;
-  // border-bottom: 1.5px solid $empty-dark;
+  border-bottom: 1px solid $empty-dark;
   @include flex-container(row, center, space-between, wrap);
-  padding: 20px;
+  padding: 15px;
   #{&}--title{
     text-transform: uppercase;
     // background-color: pink;
@@ -165,7 +180,9 @@ body{
   // font-style: italic;
   border-top: 1px solid $empty-dark;
   @include flex-container(row, center, center, wrap);
-  padding: 30px;
+  text-align: center;
+  padding: 25px;
+  // color: #616b9b;
   // #{&}--circle{
   //   background-color: $primary-blue;
   //   height: 60px;
@@ -181,12 +198,16 @@ body{
 //Styling the Main Section
 .main__section{
   @include flex-container(row, center, center, wrap);
-  padding: 20px;
+  padding: 70px;
+  // background-color: pink;
   >div{
     @include flex-container(column, center, center, wrap);
   }
   &--icons{
     @include flex-container(row, center, center, no-wrap);
+    @media screen and (max-width:365px){
+      flex-direction: column;
+    }
     &>div{
       cursor: pointer;
       margin: 10px;
@@ -211,7 +232,7 @@ body{
   right: 0;
   bottom: 0;
   @include flex-container(row, center, center, wrap);
-  background-color: $dark-blue;
+  // background-color: $dark-blue;
   min-height: 100vh;
   height: 100%;
 
@@ -229,7 +250,7 @@ body{
       width: 80vw;
     }
     @media screen and (max-width:580px){
-      width: 90vw;
+      width: 95vw;
     }
     &-upper{
       @include flex-container(row, center, space-between, no-wrap);

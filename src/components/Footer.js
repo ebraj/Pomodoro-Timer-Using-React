@@ -1,4 +1,5 @@
 import React from "react";
+// import SocialLinks from "./SocialLinks";
 
 const Footer = () => {
   return (
@@ -7,6 +8,7 @@ const Footer = () => {
         <h2>?</h2>
       </div> */}
       <p>Designed in Figma & Built with React🎯!</p>
+      {/* <SocialLinks /> */}
     </div>
   );
 };

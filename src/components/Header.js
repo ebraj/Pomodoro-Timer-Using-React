@@ -1,4 +1,5 @@
 import React from "react";
+import SocialLinks from "./SocialLinks";
 import TimeSVG from "../svg/time.svg";
 
 const Header = () => {
@@ -17,9 +18,10 @@ const Header = () => {
         </svg>
       </h4>
       {/* <TimeSVG /> */}
-      <div className="header__section--info">
+      {/* <div className="header__section--info">
         <p className="header__section--info-title">Sites</p>
-      </div>
+      </div> */}
+      <SocialLinks />
     </div>
   );
 };
