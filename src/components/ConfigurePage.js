@@ -38,7 +38,7 @@ const ConfigurePage = (props) => {
             <label>Focus/Session Time (In Minutes)</label>
             <input
               type="number"
-              placeholder="Enter the Session Time Eg.25"
+              placeholder="Eg.25"
               onChange={(e) => {
                 setPomodoro(e.target.value);
               }}
@@ -54,7 +54,7 @@ const ConfigurePage = (props) => {
             <label>Break Time (In Minutes)</label>
             <input
               type="number"
-              placeholder="Enter the Session Time Eg.25"
+              placeholder="Eg.5"
               onChange={(e) => {
                 setPomoBreak(e.target.value);
               }}

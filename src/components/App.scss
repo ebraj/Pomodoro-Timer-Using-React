@@ -232,7 +232,7 @@ body{
   right: 0;
   bottom: 0;
   @include flex-container(row, center, center, wrap);
-  // background-color: $dark-blue;
+  background-color: $dark-blue;
   min-height: 100vh;
   height: 100%;
 

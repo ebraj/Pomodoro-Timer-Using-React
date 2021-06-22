@@ -1,6 +1,5 @@
 import React from "react";
 import SocialLinks from "./SocialLinks";
-import TimeSVG from "../svg/time.svg";
 
 const Header = () => {
   return (
