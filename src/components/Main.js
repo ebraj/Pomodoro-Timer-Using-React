@@ -1,4 +1,10 @@
 import React, { useState, useEffect } from "react";
+// Importing the useSound Hooks
+import useSound from "use-sound";
+//Importing the sounds
+import startTimer from "../sounds/startTimer.mp3";
+import pauseTimer from "../sounds/pauseTimer.mp3";
+import timesUp from "../sounds/timesUp.mp3";
 
 const Main = (props) => {
   const { updateConfigure, pomodoro, pomoBreak } = props;
@@ -8,6 +14,13 @@ const Main = (props) => {
   const [seconds, setSeconds] = useState();
   const [_interval, _setInterval] = useState(0);
   const [_remainingTimeinMs, _setRemainingTimeinMs] = useState(0);
+  const [_startTimer] = useSound(startTimer);
+  const [_pauseTimer] = useSound(pauseTimer);
+  const [_timesUp] = useSound(timesUp);
+  /**
+   * All about the sounds
+   */
+
   const configureTime = (_session, _break) => {
     if (!isBreak) {
       _session < 10 ? setMinutes(`0${_session}`) : setMinutes(pomodoro);
@@ -37,6 +50,7 @@ const Main = (props) => {
     if (minutes === "00" && seconds === "00") return;
     setIsPlay(!isPlay);
     if (!isPlay) {
+      _startTimer();
       let totalTimeinMs = _remainingTimeinMs;
       let _endTime = totalTimeinMs + Date.now();
       _setInterval(
@@ -45,6 +59,7 @@ const Main = (props) => {
         }, 100)
       );
     } else {
+      _pauseTimer();
       clearInterval(_interval);
     }
   };
@@ -68,7 +83,6 @@ const Main = (props) => {
     } else {
       _setRemainingTimeinMs(pomoBreak * 60000);
     }
-    console.log(_remainingTimeinMs);
   }, [pomodoro, pomoBreak, isBreak]);
   //useEffect
   useEffect(() => {
@@ -78,6 +92,7 @@ const Main = (props) => {
       _remainingTimeinMs < 1000 &&
       _remainingTimeinMs !== 0
     ) {
+      _timesUp();
       clearInterval(_interval);
       setIsPlay(false);
       setIsBreak(!isBreak);

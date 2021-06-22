@@ -1,19 +1,32 @@
 import React, { useState, useEffect } from "react";
+// Importing the useSound Hooks
+import useSound from "use-sound";
+//Importing the sounds
+import startTimer from "../sounds/startTimer.mp3";
+import pauseTimer from "../sounds/pauseTimer.mp3";
+import timesUp from "../sounds/timesUp.mp3";
 
 const Main = (props) => {
   const { updateConfigure, pomodoro, pomoBreak } = props;
   const [isPlay, setIsPlay] = useState(false);
-  const [isSession, setIsSession] = useState(false);
+  const [isBreak, setIsBreak] = useState(false);
   const [minutes, setMinutes] = useState();
   const [seconds, setSeconds] = useState();
   const [_interval, _setInterval] = useState(0);
   const [_remainingTimeinMs, _setRemainingTimeinMs] = useState(0);
+  const [_startTimer] = useSound(startTimer);
+  const [_pauseTimer] = useSound(pauseTimer);
+  const [_timesUp] = useSound(timesUp);
+  /**
+   * All about the sounds
+   */
+
   const configureTime = (_session, _break) => {
-    if (!isSession) {
+    if (!isBreak) {
       _session < 10 ? setMinutes(`0${_session}`) : setMinutes(pomodoro);
       setSeconds("00");
     } else {
-      _break < 10 ? setSeconds(`0${_session}`) : setSeconds(pomodoro);
+      _break < 10 ? setMinutes(`0${_break}`) : setMinutes(_break);
       setSeconds("00");
     }
   };
@@ -34,8 +47,10 @@ const Main = (props) => {
   };
   // Changing the play/pause btn
   const changePlayBtn = () => {
+    if (minutes === "00" && seconds === "00") return;
     setIsPlay(!isPlay);
     if (!isPlay) {
+      _startTimer();
       let totalTimeinMs = _remainingTimeinMs;
       let _endTime = totalTimeinMs + Date.now();
       _setInterval(
@@ -44,6 +59,7 @@ const Main = (props) => {
         }, 100)
       );
     } else {
+      _pauseTimer();
       clearInterval(_interval);
     }
   };
@@ -52,6 +68,7 @@ const Main = (props) => {
     configureTime(pomodoro, pomoBreak);
     clearInterval(_interval);
     setIsPlay(false);
+    setIsBreak(false);
     _setRemainingTimeinMs(pomodoro * 60000);
   };
   const changeConfigure = () => {
@@ -61,13 +78,24 @@ const Main = (props) => {
   // ChangingConfigure
   useEffect(() => {
     configureTime(pomodoro, pomoBreak);
-    _setRemainingTimeinMs(pomodoro * 60000);
-  }, [pomodoro, pomoBreak]);
+    if (!isBreak) {
+      _setRemainingTimeinMs(pomodoro * 60000);
+    } else {
+      _setRemainingTimeinMs(pomoBreak * 60000);
+    }
+  }, [pomodoro, pomoBreak, isBreak]);
   //useEffect
   useEffect(() => {
-    if (minutes === "00" && seconds === "00" && _remainingTimeinMs < 1000) {
+    if (
+      minutes === "00" &&
+      seconds === "00" &&
+      _remainingTimeinMs < 1000 &&
+      _remainingTimeinMs !== 0
+    ) {
+      _timesUp();
       clearInterval(_interval);
       setIsPlay(false);
+      setIsBreak(!isBreak);
     }
   }, [minutes, seconds]);
   return (
@@ -93,7 +121,7 @@ const Main = (props) => {
               <h1>
                 {minutes} : {seconds}
               </h1>
-              <p>#SESSION</p>
+              <p>{isBreak ? "#BREAK" : "#SESSION"}</p>
             </div>
           </div>
         </div>
