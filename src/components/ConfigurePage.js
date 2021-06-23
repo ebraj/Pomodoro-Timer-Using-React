@@ -47,6 +47,7 @@ const ConfigurePage = (props) => {
               maxLength="2"
               minLength="0"
               max="59"
+              min="0"
               step="1"
             />
           </div>
@@ -63,6 +64,7 @@ const ConfigurePage = (props) => {
               maxLength="2"
               minLength="0"
               max="59"
+              min="0"
               step="1"
             />
           </div>
