@@ -6,7 +6,7 @@ import startTimer from "../sounds/startTimer.mp3";
 import pauseTimer from "../sounds/pauseTimer.mp3";
 import timesUp from "../sounds/timesUp.mp3";
 //Importing the circular svg
-import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
+// import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 
 const Main = (props) => {
   const { updateConfigure, pomodoro, pomoBreak } = props;
